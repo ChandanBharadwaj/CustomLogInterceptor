@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?><!-- Use this file to deploy some handlers/chains and services      --><!-- Two ways to do this:                                           --><!--   java org.apache.axis.client.AdminClient deploy.wsdd          --><!--      after the axis server is running                          --><!-- or                                                             --><!--   java org.apache.axis.utils.Admin client|server deploy.wsdd   --><!--      from the same directory that the Axis engine runs         --><deployment xmlns="http://xml.apache.org/axis/wsdd/" xmlns:java="http://xml.apache.org/axis/wsdd/providers/java">
+
+  <!-- Services from AddService WSDL service -->
+
+  <service name="Add" provider="java:RPC" style="wrapped" use="literal">
+      <parameter name="wsdlTargetNamespace" value="http://mySoap"/>
+      <parameter name="wsdlServiceElement" value="AddService"/>
+      <parameter name="schemaQualified" value="http://mySoap"/>
+      <parameter name="wsdlServicePort" value="Add"/>
+      <parameter name="className" value="mySoap.Add"/>
+      <parameter name="wsdlPortType" value="Add"/>
+      <parameter name="typeMappingVersion" value="1.2"/>
+      <operation xmlns:operNS="http://mySoap" xmlns:retNS="http://mySoap" xmlns:rtns="http://www.w3.org/2001/XMLSchema" name="subtractValue" qname="operNS:subtractValue" returnQName="retNS:subtractValueReturn" returnType="rtns:float" soapAction="">
+        <parameter xmlns:pns="http://mySoap" xmlns:tns="http://www.w3.org/2001/XMLSchema" qname="pns:value" type="tns:float"/>
+      </operation>
+      <operation xmlns:operNS="http://mySoap" xmlns:retNS="http://mySoap" xmlns:rtns="http://www.w3.org/2001/XMLSchema" name="addValue" qname="operNS:addValue" returnQName="retNS:addValueReturn" returnType="rtns:float" soapAction="">
+        <parameter xmlns:pns="http://mySoap" xmlns:tns="http://www.w3.org/2001/XMLSchema" qname="pns:value" type="tns:float"/>
+      </operation>
+      <parameter name="allowedMethods" value="subtractValue addValue"/>
+
+  </service>
+</deployment>
